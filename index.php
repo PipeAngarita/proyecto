@@ -2,7 +2,15 @@
 require_once "models/database.php"; // Incluir configuración de la base de datos
 require_once "controllers/Users.php"; // Incluir el controlador Users
 require_once "models/User.php"; // Incluir el modelo User
+require_once 'controllers/UserController.php';//incluir el controlador UserController
 
+// Ruta predeterminada
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller = new UserController();
+     $controller->store();
+} else {
+    include 'views/bienvenida.php';
+}
 // Verificar el controlador y la acción solicitada
 if (!isset($_REQUEST['controller'])) {
     // Si no se especifica un controlador, cargar el controlador de Landing o el que desees

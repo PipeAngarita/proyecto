@@ -3,13 +3,21 @@
 <head>
     <title>Bienvenida</title>
     <?php include 'partials/header.php'?>
+    <link rel="stylesheet" href="assets/felipe/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+    .registro {
+      background: linear-gradient(#70d0df, #e2e2e2, #70d0df);
+    }
+  </style>
 </head>
 <body>
     <!-- <h1>Bienvenido, <?php echo $_SESSION['email']; ?></h1> -->
   <section>
     <div class="registro container mt-5 p-4 rounded">
       <h1>Registro de Datos</h1>
-      <form class="formulario" action="" method="POST">
+      <form class="formulario" action="index.php?controller=Users&action=store" method="POST">
         <div class="form-group">
           <label for="nombre">Nombre Completo:</label>
           <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Escribe tu nombre"> 
@@ -55,7 +63,7 @@
       crossorigin="anonymous"></script>
   </section>
     
-    <a href="logout.php">Cerrar Sesión</a>
+    <!-- <a href="logout.php">Cerrar Sesión</a> -->
 </body>
 </html>
 

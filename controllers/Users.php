@@ -1,6 +1,6 @@
 <?php
 require_once 'models/User.php'; // Asegúrate de incluir la clase User
-
+require_once 'controllers/UserController.php'; // Incluir el controlador UserController 
 class Users {
     public function mostrarFormularioRegistro() {
         require 'views/registro.view.php';
@@ -8,6 +8,9 @@ class Users {
 
     public function mostrarFormularioLogin() {
         require 'views/login.view.php';
+    }
+    public function formularioBienvenida() {
+        include 'views/bienvenida.php';
     }
 
     public function procesarRegistro() {
