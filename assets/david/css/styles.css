@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lunasima', sans-serif;
+    text-decoration: none;
+}
+
+
+.bg{
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/gato.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.bg-p{
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/imgLog.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/*Header*/
+
+header{
+    height: 95px;
+    min-height: 110px;
+}
+
+.fondoHeader{
+    background-color: #70d0df;
+}
+
+.logo{
+    width: 220px;
+}
+
+/*Landing page*/
+
+.seccion1 {
+    background-color: #878481;
+}
+
+.seccion2{
+    background-color: #878481;
+}
+
+.imagenesLanding {
+    width: 300px;
+    height: 300px;
+}
+
+.iconosLanding{
+    width: 100px;
+    height: 100px;
+}
