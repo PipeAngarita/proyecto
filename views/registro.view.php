@@ -27,7 +27,7 @@
                     </div>
                     <h2 class="fw-bold text-center py-5">Ingresa tus datos</h2>
                     <!--Registro datos-->
-                    <form action="index.php?controller=usuario&action=procesarRegistro" method="post">
+                    <form action="index.php?controller=Users&action=procesarRegistro" method="post">
                         <div class="mb-4">
                             <label for="email" class="form-label">Correo Electrónico</label>
                             <input type="email" class="form-control" name="email" id="" required>

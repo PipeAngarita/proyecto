@@ -13,11 +13,13 @@
   </style>
 </head>
 <body>
-    <!-- <h1>Bienvenido, <?php echo $_SESSION['email']; ?></h1> -->
+    <!-- <h1>Bienvenido, <?php 
+
+    echo $_SESSION['email']; ?></h1> -->
   <section>
     <div class="registro container mt-5 p-4 rounded">
       <h1>Registro de Datos</h1>
-      <form class="formulario" action="index.php?controller=Users&action=store" method="POST">
+      <form class="formulario" action="index.php?controller=UserController&action=store" method="POST">
         <div class="form-group">
           <label for="nombre">Nombre Completo:</label>
           <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Escribe tu nombre"> 
@@ -25,7 +27,7 @@
         </div>
         <div class="form-group">
           <label for="email">Correo Electrónico:</label>
-          <input name="correo" type="email" class="form-control" id="email" placeholder="Escribe tu correo electrónico">
+          <input type="email" name="correo" class="form-control" id="correo" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" required>
           <span style="display: none;" class="advertencia">campo correo obligatorio</span>
         </div>
         <div class="form-group">
@@ -53,6 +55,7 @@
           <input name="nombre_mascota" type="text" class="form-control" id="nombre-mascota" placeholder="Escribe nombre">
           <span style="display: none;" class="advertencia">campo nombre mascota obligatorio</span>
         </div>
+        <input type="hidden" name="id" value="<?php echo isset($_POST['id']) ? htmlspecialchars($_POST['id']) : ''; ?>">
         <button type="submit" id="boton" class="btn btn-primary">Registrar</button>
       </form>
     </div>

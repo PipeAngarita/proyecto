@@ -16,28 +16,45 @@ class UserController {
 
     public function store() {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            if (isset($_POST['nombre'], $_POST['correo'], $_POST['telefono'], $_POST['estatura'], $_POST['nombre_mascota'], $_POST['peso'], $_POST['raza'])) {
-           
-            $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+            // Obtener el correo y el id desde la tabla login
+            $email = isset($_POST['correo']) ? $_POST['correo'] : '';
+
+            // Consulta para obtener el id basado en el correo
+            $stmt = $this->conn->prepare("SELECT id FROM login WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->bind_result($id);
+            $stmt->fetch();
+            $stmt->close();
+
+            if (!$id) {
+                echo "Error: No se encontró el ID para el correo especificado.";
+                return;
+            }
+
+            // Obtener otros datos del formulario
+            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+            $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
             $estatura = isset($_POST['estatura']) ? $_POST['estatura'] : '';
-            $nombre =  isset($_POST['nombre']) ? $_POST['nombre'] : '';
-            $nombre_mascota =   isset($_POST['nombre_mascota']) ? $_POST['nombre_mascota'] : '';
+            $nombre_mascota = isset($_POST['nombre_mascota']) ? $_POST['nombre_mascota'] : '';
             $peso = isset($_POST['peso']) ? $_POST['peso'] : '';
             $raza = isset($_POST['raza']) ? $_POST['raza'] : '';
-            $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
 
-            $sql = "INSERT INTO usuario (correo, estatura, nombre, nombre_mascota, peso, raza, telefono)
-                    VALUES ('$correo', '$estatura', '$nombre', '$nombre_mascota', '$peso', '$raza', '$telefono')";
+            // Insertar datos en la tabla usuario
+            $stmtUsuario = $this->conn->prepare("INSERT INTO usuario (id, nombre, correo, telefono) VALUES (?, ?, ?, ?)");
+            $stmtUsuario->bind_param("isss", $id, $nombre, $email, $telefono);
+            $stmtUsuario->execute();
+            $stmtUsuario->close();
 
-            if ($this->conn->query($sql) === TRUE) {
-                echo "Datos insertados correctamente";
-            } else {
-                echo "Error al insertar datos: " . $this->conn->error;
-            }
+            // Insertar datos en la tabla mascota
+            $stmtMascota = $this->conn->prepare("INSERT INTO mascota (id, estatura, nombre_mascota, peso, raza) VALUES (?, ?, ?, ?, ?)");
+            $stmtMascota->bind_param("idsss", $id, $estatura, $nombre_mascota, $peso, $raza);
+            $stmtMascota->execute();
+            $stmtMascota->close();
 
-            }
+            echo "Datos insertados correctamente en las tablas usuario y mascota.";
         } else {
-            echo "Algo pasó";
+            echo "Algo pasó"; // Manejar la situación donde no se recibe un POST
         }
     }
 }
