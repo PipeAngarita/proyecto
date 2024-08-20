@@ -11,7 +11,7 @@
     <?php include 'partials/header.php'?>
 </header>   
 <body>
-    <h1>Soy el Login</h1>
+    <!-- <h1>Soy el Login</h1> -->
     <main>
         <div class="container w-75 rounded shadow login mt-4 mb-4">
             <div class="row align-items-stretch">

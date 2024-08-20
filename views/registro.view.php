@@ -13,7 +13,7 @@
 <body>
 
     <h1>Registro</h1>
-    <h3>Soy Resgitro</h3>
+    <!-- <h3>Soy Resgitro</h3> -->
     
     <main>
         <div class="container w-75 rounded shadow login mt-4 mb-4">
